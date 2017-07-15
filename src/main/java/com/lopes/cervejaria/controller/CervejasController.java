@@ -23,7 +23,6 @@ public class CervejasController {
 	public String cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			model.addAttribute("mensagem", "Erro no formulário");
-			System.out.println("Tem erro!");
 			return "cerveja/cadastro-cerveja";
 		}
 
