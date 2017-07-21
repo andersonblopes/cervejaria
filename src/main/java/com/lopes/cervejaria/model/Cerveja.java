@@ -6,13 +6,13 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class Cerveja {
 
-	@NotBlank
+	@NotBlank(message = "SKU é obrigatório!")
 	private String sku;
 
-	@NotBlank
+	@NotBlank(message = "Nome é obrigatório!")
 	private String nome;
 
-	@Size(min = 1, max = 50) // O atributo min substitui a anotation: @NotBlank
+	@Size(min = 1, max = 50, message = "A descrição deve ter entre 1 a 50 caracteres!")
 	private String descricao;
 
 	public String getSku() {
