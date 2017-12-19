@@ -41,8 +41,8 @@ public class Cerveja implements Serializable {
 
 	private BigDecimal valor;
 
-	@Column(name = "teor_alcolico")
-	private BigDecimal teorAlcolico;
+	@Column(name = "teor_alcoolico")
+	private BigDecimal teorAlcoolico;
 
 	private BigDecimal comissao;
 
@@ -99,12 +99,12 @@ public class Cerveja implements Serializable {
 		this.valor = valor;
 	}
 
-	public BigDecimal getTeorAlcolico() {
-		return teorAlcolico;
+	public BigDecimal getTeorAlcoolico() {
+		return teorAlcoolico;
 	}
 
-	public void setTeorAlcolico(BigDecimal teorAlcolico) {
-		this.teorAlcolico = teorAlcolico;
+	public void setTeorAlcoolico(BigDecimal teorAlcoolico) {
+		this.teorAlcoolico = teorAlcoolico;
 	}
 
 	public BigDecimal getComissao() {
