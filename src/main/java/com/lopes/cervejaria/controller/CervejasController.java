@@ -15,12 +15,16 @@ import com.lopes.cervejaria.model.Cerveja;
 import com.lopes.cervejaria.model.enumeration.Origem;
 import com.lopes.cervejaria.model.enumeration.Sabor;
 import com.lopes.cervejaria.repository.Estilos;
+import com.lopes.cervejaria.service.CadastroCervejaService;
 
 @Controller
 public class CervejasController {
 
 	@Autowired
 	private Estilos estilos;
+
+	@Autowired
+	private CadastroCervejaService cadastroCervejaService;
 
 	@RequestMapping("/cervejas/novo")
 	public ModelAndView novo(Cerveja cerveja) {
@@ -34,15 +38,12 @@ public class CervejasController {
 	@RequestMapping(value = "/cervejas/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model,
 			RedirectAttributes attributes) {
-		// if (result.hasErrors()) {
-		// return novo(cerveja);
-		// }
+		if (result.hasErrors()) {
+			return novo(cerveja);
+		}
 
+		cadastroCervejaService.salvar(cerveja);
 		attributes.addFlashAttribute("mensagem", "Cerveja salva com sucesso!");
-		System.out.println(">>>>>>SKU:" + cerveja.getSku());
-		System.out.println(">>>>>>SABOR:" + cerveja.getSabor());
-		System.out.println(">>>>>>ORIGEM:" + cerveja.getOrigem());
-		System.out.println(">>>>>>ESTILO:" + cerveja.getEstilo());
 		return new ModelAndView("redirect:/cervejas/novo");
 	}
 
