@@ -56,9 +56,11 @@ public class Cerveja implements Serializable {
 	@Column(name = "teor_alcoolico")
 	private BigDecimal teorAlcoolico;
 
+	@NotNull(message = "A comissão é obrigatória")
 	@DecimalMax(value = "100.0", message = "O valor da comissão não pode ser maior que 100")
 	private BigDecimal comissao;
 
+	@NotNull(message = "A quantiddade em estoque deve ser informada")
 	@Max(value = 9999, message = "A quantidade em estoque deve sermenor que 9.999")
 	@Column(name = "quantidade_estoque")
 	private Integer quantidadeEstoque;
