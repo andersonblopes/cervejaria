@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lopes.cervejaria.model.Estilo;
 import com.lopes.cervejaria.service.EstiloService;
+import com.lopes.cervejaria.service.exception.EstiloCadastradoException;
 
 @Controller
 public class EstiloController {
@@ -33,7 +34,14 @@ public class EstiloController {
 			return novo(estilo);
 		}
 
-		estiloService.salvar(estilo);
+		try {
+			estiloService.salvar(estilo);
+
+		} catch (EstiloCadastradoException e) {
+			result.rejectValue("nome", e.getMessage(), e.getMessage());
+			return novo(estilo);
+		}
+
 		attributes.addFlashAttribute("mensagem", "Estilo cadastrado com sucesso!");
 		return new ModelAndView("redirect:/estilo/novo");
 	}

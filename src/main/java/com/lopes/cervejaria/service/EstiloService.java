@@ -1,11 +1,14 @@
 package com.lopes.cervejaria.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lopes.cervejaria.model.Estilo;
 import com.lopes.cervejaria.repository.Estilos;
+import com.lopes.cervejaria.service.exception.EstiloCadastradoException;
 
 @Service
 public class EstiloService {
@@ -15,6 +18,11 @@ public class EstiloService {
 
 	@Transactional
 	public void salvar(Estilo estilo) {
+		Optional<Estilo> estiloOptional = estilos.findByNomeIgnoreCase(estilo.getNome());
+		if (estiloOptional.isPresent()) {
+			throw new EstiloCadastradoException("Nome de estilo já existente");
+		}
+
 		estilos.save(estilo);
 	}
 
