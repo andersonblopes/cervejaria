@@ -18,6 +18,7 @@ import com.lopes.cervejaria.repository.Estilos;
 import com.lopes.cervejaria.service.CadastroCervejaService;
 
 @Controller
+@RequestMapping("/cervejas")
 public class CervejasController {
 
 	@Autowired
@@ -26,7 +27,7 @@ public class CervejasController {
 	@Autowired
 	private CadastroCervejaService cadastroCervejaService;
 
-	@RequestMapping("/cervejas/novo")
+	@RequestMapping("/novo")
 	public ModelAndView novo(Cerveja cerveja) {
 		ModelAndView view = new ModelAndView("cerveja/cadastro-cerveja");
 		view.addObject("sabores", Sabor.values());
@@ -35,7 +36,7 @@ public class CervejasController {
 		return view;
 	}
 
-	@RequestMapping(value = "/cervejas/novo", method = RequestMethod.POST)
+	@RequestMapping(value = "/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model,
 			RedirectAttributes attributes) {
 		if (result.hasErrors()) {

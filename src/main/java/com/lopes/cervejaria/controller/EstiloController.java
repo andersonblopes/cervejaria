@@ -20,18 +20,19 @@ import com.lopes.cervejaria.service.EstiloService;
 import com.lopes.cervejaria.service.exception.EstiloCadastradoException;
 
 @Controller
+@RequestMapping(value = "/estilo")
 public class EstiloController {
 
 	@Autowired
 	private EstiloService estiloService;
 
-	@RequestMapping("/estilo/novo")
+	@RequestMapping("/novo")
 	public ModelAndView novo(Estilo estilo) {
 		ModelAndView view = new ModelAndView("estilo/cadastro-estilo");
 		return view;
 	}
 
-	@RequestMapping(value = "/estilo/novo", method = RequestMethod.POST)
+	@RequestMapping(value = "/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Estilo estilo, BindingResult result, Model model,
 			RedirectAttributes attributes) {
 		if (result.hasErrors()) {
@@ -50,7 +51,7 @@ public class EstiloController {
 		return new ModelAndView("redirect:/estilo/novo");
 	}
 
-	@RequestMapping(value = "/estilo", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Valid Estilo estilo, BindingResult result) {
 		if (result.hasErrors()) {
 			return ResponseEntity.badRequest().body(result.getFieldError("nome").getDefaultMessage());
