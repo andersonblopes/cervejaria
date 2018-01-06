@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:th="http://www.thymeleaf.org"
-	layout:decorator="'layout/LayoutPadrao'">
+	layout:decorator="'layout/LayoutPadrao'"
+	xmlns:cervejaria="http://cervejaria.lopes.com">
 	<head>
 		<title>Cadastro de estilo</title>
 	</head>
@@ -16,11 +17,8 @@
 		</div>
 		<div class="container-fluid">
 			
-			<th:block th:include="fragments/mensagem-success"></th:block>
-		
 			<form method="post"  th:object="${estilo}">
-			
-				<th:block th:include="fragments/mensagem-erro-validacao"></th:block>
+				<cervejaria:message/>
 			
 				<div class="row">		
 					<div class="form-group  col-sm-12" th:classappend="${#fields.hasErrors('nome')} ? has-error">
