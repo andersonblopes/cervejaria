@@ -80,6 +80,11 @@ public class Cerveja implements Serializable {
 	@JoinColumn(name = "id_estilo")
 	private Estilo estilo;
 
+	private String foto;
+
+	@Column(name = "content_type")
+	private String contentType;
+
 	@PrePersist
 	@PreUpdate
 	public void preprsisteUpdate() {
@@ -201,6 +206,22 @@ public class Cerveja implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 
 }
