@@ -20,7 +20,7 @@ import com.lopes.cervejaria.service.EstiloService;
 import com.lopes.cervejaria.service.exception.EstiloCadastradoException;
 
 @Controller
-@RequestMapping(value = "/estilo")
+@RequestMapping(value = "/estilos")
 public class EstiloController {
 
 	@Autowired
